@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AwesomeAnswers</title>
+    <%= csrf_meta_tags %>
+
+    <%# this refers to the application.css manifest file , so in development it will include all the files individual css files. In production it will only incldue the application.css compiled file.  %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body background="http://www.planwallpaper.com/static/images/cool-background.jpg">
+
+    <!-- <a href='/'>Home</a> -->
+    <%= link_to 'Home', root_path %>
+    |
+    <!-- <a href='/contact'>Contact Us</a> -->
+    <%#= link_to 'Contact Us', contact_path({something: 'hello world'}) %>
+    <%= link_to 'Contact Us', contact_url %>
+    |
+    <%= link_to 'All Questions', questions_path %>
+    |
+    <%= link_to 'New Question', new_question_path %>
+    <% if user_signed_in? %>
+      Hello <%= current_user.first_name %>
+      <%= link_to 'Sign out', sessions_path, method: :delete %>
+    <% else %>|
+      <%= link_to 'Sign Up', new_user_path %> |
+      <%= link_to 'Sign In', new_session_path %> |
+    <% end %>
+    <hr>
+    <%= flash[:notice] || flash[:alert]%>
+    <%# notice || alert <<< another notation for above  %>
+    <%# reason to use notice or alert is so that you can style them individually  %>
+    <%= yield %>
+  </body>
+</html>

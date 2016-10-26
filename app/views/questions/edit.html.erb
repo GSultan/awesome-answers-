@@ -1,0 +1,12 @@
+<h1>Edit Question</h1>
+
+<%= render 'form', {btn_label: 'Update'} %>
+
+<%# if the object you pass to the  form_for is persisted (has an id in the DB) then rails will automatically make the form submit a PATCH request with URL in this case question_path (@question ) (same as show link with PATCH request).
+@question variable is persisted in this case so it will have a title and a body so those will be pre-populated in the respective field %>
+
+  <%# this will automatically generate a submit button. The label for the button
+      will depend on the `@question` variable. If @question is a new instance
+      then the label of the button will be `Create #{model name capitalized}`.
+      If you're not happy with the label, you can pass the label as a first
+      arguement: f.submit 'Create'  %>

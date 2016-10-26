@@ -1,0 +1,8 @@
+<h1>New Question</h1>
+
+<%# we moved the form_for into a separate file  %>
+<%# calling it back using a helper method called 'render' %>
+<%# render '/questions/form'      <<<<<< more verbose way of putting it but they are in the same folder so a partial path is fine , and it will render the form%>
+<%# Partials have access to the same instance variable as the template they ar rendered within. IOn this case the _form partial will have access to @question variable.  %>
+<%= render 'form', {btn_label: 'Submit'} %>
+<%# In this case there will be a local variable named 'btn_label' within the _form.html.erb partial and it will have the value of 'Submit' %>

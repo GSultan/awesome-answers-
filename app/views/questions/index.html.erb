@@ -1,0 +1,6 @@
+<h1>All Questions</h1>
+<!-- Give it a default view -->
+<% @questions.each do |q| %>
+<%= link_to q.title, question_path(q.id) %>
+<hr>
+<% end %>

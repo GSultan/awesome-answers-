@@ -1,0 +1,36 @@
+<h1><%= @question.title %></h1>
+<%# questions_answers_path(@question) %>
+<p><%= @question.body %></p>
+
+<p>
+  Created by: <%= @question.user_full_name %>
+</p>
+
+<% if can? :manage, @question %>
+<%= link_to 'edit', edit_question_path(@question) %>
+<%= link_to 'delete', question_path(@question),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?'} %>
+<% end %>
+<%# form_for @answer, url: question_answers_path(@question)  do |f| %>
+<%= @answer.errors.full_messages.join(', ') %>
+<%= form_for [@question, @answer] do |f| %>
+<div class="">
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+</div>
+<%= f.submit %>
+<% end %>
+
+<h2>All Answers</h2>
+<% @question.answers.each do |answer| %>
+    User: <%= answer.user.first_name %> |
+    Answer: <%= answer.body %> |
+    <%  if can? :delete, answer %>
+<%= link_to 'delete', answer_path(answer),
+                      method: :delete,
+                      data: { confirm: 'are you sure?'} %>
+
+<hr>
+<% end %>
+<% end %>
